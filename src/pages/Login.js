@@ -1,7 +1,7 @@
 import { signInAnonymously } from 'firebase/auth'
 import React from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 import s from './Registration.module.css'
 
@@ -62,6 +62,9 @@ export const Login = () => {
             <span className={s.forget}>Forgot password?</span>
             <span className={s.clearfix}></span>
             <button className={s.btn}>Log In</button>
+            <p>
+              No account? - <Link to="/register">Sign Up</Link>
+            </p>
           </form>
         </div>
       </div>

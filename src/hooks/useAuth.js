@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
-import { doc, getDoc, setDoc, Timestamp, updateDoc } from 'firebase/firestore'
+import { doc, setDoc, Timestamp } from 'firebase/firestore'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -12,7 +12,6 @@ import { auth, projectFirestore } from '../firebase/config'
 
 const useAuth = () => {
   const [user, setuser] = useState(null)
-  const [image, setImage] = useState('')
 
   const history = useNavigate()
 
