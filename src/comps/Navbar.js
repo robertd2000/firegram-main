@@ -30,13 +30,14 @@ export const Navbar = () => {
             <>
               <li>
                 <a className="btn" onClick={signout}>
-                  Log out
+                  Выйти
                 </a>
               </li>
 
               <li>
                 <Link to="/profile">{name ? name : 'Profile'}</Link>
               </li>
+
               <li>
                 <div className="nav_avatar ">
                   <img
@@ -52,13 +53,16 @@ export const Navbar = () => {
           ) : (
             <>
               <li>
-                <Link to="/login">Log In</Link>
+                <Link to="/login">Войти</Link>
               </li>
               <li>
-                <Link to="/register">Sign Up</Link>
+                <Link to="/register">Зарегистрироваться</Link>
               </li>
             </>
           )}
+          <li>
+            <Link to="/images">Все картинки</Link>
+          </li>
         </ul>
       </div>
     </nav>

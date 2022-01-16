@@ -1,12 +1,11 @@
-import { signInAnonymously } from 'firebase/auth'
 import React from 'react'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 import s from './Registration.module.css'
 
 export const Login = () => {
-  const { user, signIn } = useAuth()
+  const { signIn } = useAuth()
 
   const [data, setData] = useState({
     email: '',
@@ -43,7 +42,7 @@ export const Login = () => {
     <div className={s.container}>
       <div className={s.login}>
         <div className={s.content}>
-          <h1>Log In</h1>
+          <h1>Войти</h1>
           <form className={s.form} onSubmit={submitHandle}>
             <input
               type="email"
@@ -54,19 +53,23 @@ export const Login = () => {
             />
             <input
               type="password"
-              placeholder="password"
+              placeholder="пароль"
               name="password"
               value={password}
               onChange={handleChange}
             />
-            <span className={s.forget}>Forgot password?</span>
+            <span className={s.forget}>Забыли пароль?</span>
             <span className={s.clearfix}></span>
-            <button className={s.btn}>Log In</button>
+            <button disabled={loading} className={s.btn}>
+              {' '}
+              {!loading ? 'Войти' : 'Вход...'}
+            </button>
             <p>
-              No account? - <Link to="/register">Sign Up</Link>
+              Нет аккаунта? - <Link to="/register">Регистрация</Link>
             </p>
           </form>
         </div>
+        {error ? <p classNameName="error">{error}</p> : null}
       </div>
     </div>
   )

@@ -5,6 +5,7 @@ import { PrivateRoute } from './comps/PrivateRoute'
 import { AuthProvider } from './context/auth'
 import useAuth from './hooks/useAuth'
 import { Home } from './pages/Home'
+import { Images } from './pages/Images'
 import { Login } from './pages/Login'
 import { Profile } from './pages/Profile'
 import { Register } from './pages/Register'
@@ -17,7 +18,15 @@ function App() {
       <AuthProvider>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute user={user}>
+                <Home />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/images" element={<Images />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route

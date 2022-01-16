@@ -31,23 +31,6 @@ body {
 }
 
 /* Nav Bar */
-/* 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
-  padding: 0px 20px;
-  background-color: var(--color-1);
-  border-bottom: 1px solid var(--color-6);
-}
-nav a {
-  color: var(--color-2);
-  text-decoration: none;
-}
-nav div a {
-  margin-right: 20px;
-} */
 
 section {
   max-width: 500px;
@@ -175,13 +158,33 @@ label:hover {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
 }
-.backdrop img {
+.backdrop div {
+  max-width: 60%;
+  max-height: 80%;
+  margin: 0px auto;
+
+  /* background-color: #fff; */
+}
+.backdrop_img {
   display: block;
   max-width: 60%;
   max-height: 80%;
-  margin: 60px auto;
+  margin: 0 auto;
   box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
   border: 3px solid white;
+}
+
+.author {
+  /* position: fixed;
+  top: 700px;
+  left: 800px; */
+  display: block;
+  max-width: 60%;
+  max-height: 80%;
+  margin: -50px auto;
+  text-align: center;
+  background-color: #fff;
+  min-height: 100px;
 }
 
 /* Profile */
@@ -205,7 +208,7 @@ label:hover {
   background-color: #fff;
   color: #333;
   border-bottom-right-radius: 25px;
-  height: 86%;
+  /* height: 86%; */
   left: 0;
   overflow-x: hidden;
   padding-top: 20px;
@@ -265,6 +268,9 @@ hr {
   width: 65%;
 }
 
+.logo a {
+  text-decoration: none;
+}
 /* End */
 
 /* Main */
@@ -288,17 +294,16 @@ hr {
   border-radius: 18px;
   box-shadow: 1px 1px 8px 0 grey;
   height: auto;
+  margin-top: 40px;
   margin-bottom: 20px;
   padding: 20px 0 20px 50px;
+  font-size: 20px;
 }
 
-.main .card table {
-  border: none;
-  font-size: 16px;
-  height: 270px;
-  width: 80%;
+.card-body span {
+  float: right;
+  margin-right: 12%;
 }
-
 .edit {
   position: absolute;
   color: #e7e7e8;
@@ -358,7 +363,6 @@ hr {
 .nav-wrapper {
   margin: auto;
   text-align: center;
-  width: 70%;
 }
 @media (max-width: 768px) {
   .nav-wrapper {
@@ -373,7 +377,7 @@ hr {
 
 .logo {
   float: left;
-  margin-left: 28px;
+  margin-top: -18px;
   font-size: 1.5em;
   height: 60px;
   letter-spacing: 1px;
@@ -696,4 +700,23 @@ hr {
 #menu {
   display: flex;
   margin-top: 10px;
+}
+
+.input {
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 60%;
+  font-size: 1em;
+}
+.button {
+  background-color: #00b5fd; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

@@ -12,7 +12,7 @@ export const Register = () => {
     loading: false,
   })
 
-  const { user, signup } = useAuth()
+  const { signup } = useAuth()
 
   const handleChange = (e) => {
     setData({
@@ -43,12 +43,12 @@ export const Register = () => {
     <div className={s.container}>
       <div className={s.register}>
         <div className={s.content}>
-          <h1>Sign Up</h1>
+          <h1>Регистрация</h1>
 
           <form onSubmit={submitHandle} className={s.form}>
             <input
               type="text"
-              placeholder="name"
+              placeholder="Имя"
               name="name"
               value={name}
               onChange={handleChange}
@@ -62,14 +62,14 @@ export const Register = () => {
             />
             <input
               type="password"
-              placeholder="password"
+              placeholder="Пароль"
               name="password"
               value={password}
               onChange={handleChange}
             />
             <span className={s.clearfix}></span>
             <button className={s.btn} disabled={loading}>
-              {!loading ? 'Register' : 'Creating'}
+              {!loading ? 'Зарегистрироваться' : 'Регистрация...'}
             </button>
           </form>
         </div>
