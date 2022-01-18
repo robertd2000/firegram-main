@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { auth } from '../firebase/config'
 import useAuth from '../hooks/useAuth'
 import useProfile from '../hooks/useProfile'
 
 export const Navbar = () => {
-  const { user, signout } = useAuth()
+  const { user, signout } = useAuth(auth?.currentUser?.uid)
   const { data } = useProfile()
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
@@ -12,7 +13,7 @@ export const Navbar = () => {
   useEffect(() => {
     setName(data?.name)
     setImage(data?.avatar)
-  })
+  }, [data])
 
   return (
     <nav id="navbar">
@@ -35,7 +36,9 @@ export const Navbar = () => {
               </li>
 
               <li>
-                <Link to="/profile">{name ? name : 'Profile'}</Link>
+                <Link to={`/profile/${user.uid}`}>
+                  {name ? name : 'Profile'}
+                </Link>
               </li>
 
               <li>

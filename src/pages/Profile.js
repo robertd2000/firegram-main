@@ -1,35 +1,59 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { ProfileMain } from '../comps/ProfileMain'
+import { useParams } from 'react-router-dom'
+import { ImageGrid } from '../comps/ImageGrid'
+import { Modal } from '../comps/Model'
 import { Sidenav } from '../comps/Sidenav'
+import Title from '../comps/Title'
+import { UploadForm } from '../comps/UploadForm'
+import { auth } from '../firebase/config'
+import useFirestore from '../hooks/useFirestore'
 
 import useProfile from '../hooks/useProfile'
 
 export const Profile = () => {
-  const [user, setuser] = useState(null)
-  const [img, setImg] = useState('')
+  const { id } = useParams()
 
-  const { uploadImg, deleteAvatar, data } = useProfile()
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [user, setuser] = useState(null)
+
+  const [docsList, setDocsList] = useState([])
+
+  const { docs } = useFirestore('images', id)
+  const { data } = useProfile(id)
 
   useEffect(() => {
     setuser(data)
-
-    if (img) {
-      uploadImg(img, user, setImg)
-    }
-  }, [img, data])
-
-  const onDeleteAvatar = () => {
-    deleteAvatar(user)
-  }
+    setDocsList(docs)
+  }, [data, id, docs])
 
   return (
     <div>
-      {user ? (
+      {user && id ? (
         <>
-          <Sidenav user={user} setImg={setImg} deleteImage={onDeleteAvatar} />
-          <ProfileMain user={user} />
+          <Sidenav user={user} active={'profile'} id={id} />
+          {id === auth?.currentUser?.uid && (
+            <>
+              <Title />
+              <UploadForm />
+            </>
+          )}
+
+          <div>
+            <ImageGrid
+              setSelectedImage={setSelectedImage}
+              id={id}
+              docs={docsList}
+            />
+            {selectedImage && (
+              <Modal
+                selectedImage={selectedImage}
+                setSelectedImage={setSelectedImage}
+                author={user}
+              />
+            )}
+          </div>
         </>
       ) : (
         'No data'

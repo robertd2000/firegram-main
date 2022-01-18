@@ -43,7 +43,10 @@ const useStorage = (file) => {
             avatar: data?.avatar || '',
             name: data?.name || '',
             email: data?.email || '',
+            uid: auth.currentUser.uid,
           })
+
+          console.log(data)
 
           setUrl(url)
         }
@@ -61,6 +64,7 @@ const useStorage = (file) => {
           avatar: data?.avatar || '',
           name: data?.name || '',
           email: data?.email || '',
+          uid: auth.currentUser.uid,
         })
       }
     }

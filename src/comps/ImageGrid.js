@@ -4,7 +4,7 @@ import React from 'react'
 export const ImageGrid = ({ setSelectedImage, docs }) => {
   return (
     <div className="img-grid">
-      {docs &&
+      {docs ? (
         docs.map((doc) => (
           <motion.div
             layout
@@ -21,7 +21,12 @@ export const ImageGrid = ({ setSelectedImage, docs }) => {
               transition={{ delay: 1 }}
             />
           </motion.div>
-        ))}
+        ))
+      ) : (
+        <div className="loader">
+          <div className="loader_inner"></div>
+        </div>
+      )}
     </div>
   )
 }

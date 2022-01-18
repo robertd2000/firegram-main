@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { auth } from '../firebase/config'
 import useProfile from '../hooks/useProfile'
 
 export const ProfileMain = ({ user }) => {
@@ -20,7 +21,7 @@ export const ProfileMain = ({ user }) => {
 
   return (
     <div className="main">
-      <h2>IDENTITY</h2>
+      <h2>Информация о профиле</h2>
       <div className="card">
         <div className="card-body">
           <i className="fa fa-pen fa-xs edit" onClick={onEditHandle}></i>

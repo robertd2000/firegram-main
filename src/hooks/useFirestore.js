@@ -27,7 +27,7 @@ const useFirestore = (col, id) => {
     })
 
     return () => unsub()
-  }, [col])
+  }, [col, id])
 
   return { docs }
 }

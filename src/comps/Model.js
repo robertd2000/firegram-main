@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 export const Modal = ({ selectedImage, setSelectedImage, author }) => {
   const handleClick = (e) => {
@@ -7,6 +8,7 @@ export const Modal = ({ selectedImage, setSelectedImage, author }) => {
       setSelectedImage(null)
     }
   }
+  console.log(author)
   return (
     <motion.div
       className="backdrop"
@@ -32,7 +34,7 @@ export const Modal = ({ selectedImage, setSelectedImage, author }) => {
               alt="avatar"
             />
           </motion.div>
-          Автор: {author.name}
+          Автор: <Link to={`/profile/${author.uid}`}> {author.name}</Link>
         </motion.div>
       </motion.div>
     </motion.div>

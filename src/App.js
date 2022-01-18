@@ -9,6 +9,7 @@ import { Images } from './pages/Images'
 import { Login } from './pages/Login'
 import { Profile } from './pages/Profile'
 import { Register } from './pages/Register'
+import { Settings } from './pages/Settings'
 
 function App() {
   const { user } = useAuth()
@@ -29,11 +30,12 @@ function App() {
           <Route path="/images" element={<Images />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile/:id" element={<Profile />} />
           <Route
-            path="/profile"
+            path="/settings"
             element={
               <PrivateRoute user={user}>
-                <Profile />
+                <Settings />
               </PrivateRoute>
             }
           />

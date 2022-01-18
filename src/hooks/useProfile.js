@@ -8,12 +8,13 @@ import {
 import { useEffect, useState } from 'react'
 import { auth, projectFirestore, projectStorage } from '../firebase/config'
 
-const useProfile = () => {
+const useProfile = (id) => {
   const [data, setdata] = useState(null)
 
   useEffect(() => {
     if (auth.currentUser) {
-      const userRef = doc(projectFirestore, 'users', auth.currentUser.uid)
+      console.log(id)
+      const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
 
       const unsub = onSnapshot(userRef, (doc) => {
         setdata({
@@ -22,21 +23,22 @@ const useProfile = () => {
           avatar: doc.data().avatar,
           avatarPath: doc.data().avatarPath,
           createdAt: doc.data().createdAt,
+          uid: doc.data().uid,
         })
       })
       return () => unsub()
     }
-  }, [])
+  }, [id, auth.currentUser])
 
   const getProfileData = async () => {
-    const userRef = doc(projectFirestore, 'users', auth.currentUser.uid)
+    const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
 
     const docSnap = await getDoc(userRef)
     return docSnap
   }
 
   const uploadImg = async (img, user, setImg) => {
-    const userRef = doc(projectFirestore, 'users', auth.currentUser.uid)
+    const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
 
     const imgRef = ref(
       projectStorage,
@@ -61,7 +63,7 @@ const useProfile = () => {
 
   const deleteAvatar = async (user) => {
     try {
-      const userRef = doc(projectFirestore, 'users', auth.currentUser.uid)
+      const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
 
       const confirm = window.confirm('Delete avatar?')
       if (confirm) {
@@ -80,7 +82,7 @@ const useProfile = () => {
   }
 
   const updateProfileData = async (name) => {
-    const userRef = doc(projectFirestore, 'users', auth.currentUser.uid)
+    const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
 
     try {
       await updateDoc(userRef, {
