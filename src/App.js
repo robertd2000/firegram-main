@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Navbar } from './comps/Navbar'
+import { PostCard } from './comps/PostCard'
 import { PrivateRoute } from './comps/PrivateRoute'
 import { AuthProvider } from './context/auth'
 import useAuth from './hooks/useAuth'
@@ -30,6 +31,7 @@ function App() {
           <Route path="/images" element={<Images />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          {/* <Route path="/post" element={<PostCard />} /> */}
           <Route path="/profile/:id" element={<Profile />} />
           <Route
             path="/settings"

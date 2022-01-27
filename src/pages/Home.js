@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ImageGrid } from '../comps/ImageGrid'
-import { Modal } from '../comps/Model'
+import { Modal } from '../comps/PostModal/Modal'
 import useFirestore from '../hooks/useFirestore'
 
 export const Home = () => {

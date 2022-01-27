@@ -8,6 +8,7 @@ export const Settings = () => {
   const [user, setuser] = useState(null)
   const [img, setImg] = useState('')
   const { uploadImg, deleteAvatar, data } = useProfile()
+
   useEffect(() => {
     setuser(data)
 
@@ -19,6 +20,7 @@ export const Settings = () => {
   const onDeleteAvatar = () => {
     deleteAvatar(user)
   }
+
   return (
     <div>
       {user ? (

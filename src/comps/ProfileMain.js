@@ -6,6 +6,7 @@ export const ProfileMain = ({ user }) => {
   const { updateProfileData } = useProfile()
   const [isEditing, setIsEditing] = useState(false)
   const [name, setName] = useState(user.name)
+
   const onEditHandle = () => {
     setIsEditing(!isEditing)
   }

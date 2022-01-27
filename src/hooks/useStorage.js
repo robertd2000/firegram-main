@@ -44,6 +44,7 @@ const useStorage = (file) => {
             name: data?.name || '',
             email: data?.email || '',
             uid: auth.currentUser.uid,
+            like: 0,
           })
 
           console.log(data)
@@ -65,6 +66,7 @@ const useStorage = (file) => {
           name: data?.name || '',
           email: data?.email || '',
           uid: auth.currentUser.uid,
+          like: 0,
         })
       }
     }
