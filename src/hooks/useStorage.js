@@ -9,7 +9,7 @@ import {
 } from '../firebase/config'
 import useProfile from './useProfile'
 
-const useStorage = (file) => {
+const useStorage = (file, postId) => {
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState(null)
   const [url, setUrl] = useState(null)
@@ -45,9 +45,8 @@ const useStorage = (file) => {
             email: data?.email || '',
             uid: auth.currentUser.uid,
             like: 0,
+            postId,
           })
-
-          console.log(data)
 
           setUrl(url)
         }
@@ -67,6 +66,7 @@ const useStorage = (file) => {
           email: data?.email || '',
           uid: auth.currentUser.uid,
           like: 0,
+          postId,
         })
       }
     }

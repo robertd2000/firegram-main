@@ -9,7 +9,6 @@ export const PostCard = ({ selectedImage, setSelectedImage, author }) => {
       setSelectedImage(null)
     }
   }
-  console.log(author)
   return (
     <motion.div className={s.postContainer}>
       <motion.div

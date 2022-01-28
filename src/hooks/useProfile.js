@@ -13,7 +13,6 @@ const useProfile = (id) => {
 
   useEffect(() => {
     if (auth.currentUser) {
-      console.log(id)
       const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
 
       const unsub = onSnapshot(userRef, (doc) => {
@@ -68,7 +67,6 @@ const useProfile = (id) => {
       const confirm = window.confirm('Delete avatar?')
       if (confirm) {
         const avatarRef = ref(projectStorage, user.avatarPath)
-        console.log(user.avatarPath)
         await deleteObject(avatarRef)
 
         await updateDoc(userRef, {

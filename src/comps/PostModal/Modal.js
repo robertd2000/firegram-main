@@ -12,9 +12,9 @@ export const Modal = ({ selectedImage, setSelectedImage, author, setLike }) => {
       setSelectedImage(null)
     }
   }
-  console.log(author)
+
   const onLikePost = () => {
-    setLike(selectedImage.id, author.uid)
+    setLike(selectedImage.postId, author.uid)
   }
   return (
     <motion.div

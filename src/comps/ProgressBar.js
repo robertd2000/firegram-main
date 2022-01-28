@@ -2,19 +2,21 @@ import React, { useEffect } from 'react'
 import useStorage from '../hooks/useStorage'
 import { motion } from 'framer-motion'
 
-export const ProgressBar = ({file, setFile}) => {
-    const {url, progress} = useStorage(file)
-    
-    useEffect(() => {
-        if (url) {
-            setFile(null)
-        }
-    }, [url, setFile])
+export const ProgressBar = ({ file, setFile }) => {
+  const postId = Math.random() * 100
+  const { url, progress } = useStorage(file, postId)
 
-    return <motion.div 
-        initial={{ width: 0 }}
-        animate={{ width: progress + '%' }} 
-        className='progress-bar' >
+  useEffect(() => {
+    if (url) {
+      setFile(null)
+    }
+  }, [url, setFile])
 
-    </motion.div>
+  return (
+    <motion.div
+      initial={{ width: 0 }}
+      animate={{ width: progress + '%' }}
+      className="progress-bar"
+    ></motion.div>
+  )
 }

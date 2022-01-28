@@ -3,7 +3,6 @@ import Camera from './Camera'
 import Delete from './Delete'
 
 export const ImageContainer = ({ avatar, deleteImage, setImg }) => {
-  console.log(deleteImage, setImg)
   return (
     <div className="img_container ">
       <img
