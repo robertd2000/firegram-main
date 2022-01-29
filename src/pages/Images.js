@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { ImageGrid } from '../comps/ImageGrid'
 import { Modal } from '../comps/PostModal/Modal'
 import useFirestore from '../hooks/useFirestore'
+import { usePost } from '../hooks/usePost'
 
 export const Images = () => {
   const [selectedImage, setSelectedImage] = useState(null)
 
-  const { docs, setLike } = useFirestore('images')
+  const { docs } = useFirestore('images')
+  const { setLike } = usePost()
   let data = docs.filter((i) => i?.email === selectedImage?.email)[0]
 
   return (

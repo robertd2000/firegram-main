@@ -1,13 +1,13 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Navbar } from './comps/Navbar'
-import { PostCard } from './comps/PostCard'
 import { PrivateRoute } from './comps/PrivateRoute'
 import { AuthProvider } from './context/auth'
 import useAuth from './hooks/useAuth'
 import { Home } from './pages/Home'
 import { Images } from './pages/Images'
 import { Login } from './pages/Login'
+import { Post } from './pages/Post'
 import { Profile } from './pages/Profile'
 import { Register } from './pages/Register'
 import { Settings } from './pages/Settings'
@@ -31,8 +31,9 @@ function App() {
           <Route path="/images" element={<Images />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          {/* <Route path="/post" element={<PostCard />} /> */}
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/images/post/:id" element={<Post />} />
+
           <Route
             path="/settings"
             element={

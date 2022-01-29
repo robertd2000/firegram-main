@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { auth } from '../firebase/config'
 import useProfile from '../hooks/useProfile'
 
 export const ProfileMain = ({ user }) => {

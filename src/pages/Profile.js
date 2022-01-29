@@ -9,6 +9,7 @@ import Title from '../comps/Title'
 import { UploadForm } from '../comps/UploadForm'
 import { auth } from '../firebase/config'
 import useFirestore from '../hooks/useFirestore'
+import { usePost } from '../hooks/usePost'
 
 import useProfile from '../hooks/useProfile'
 
@@ -20,8 +21,9 @@ export const Profile = () => {
 
   const [docsList, setDocsList] = useState([])
 
-  const { docs, setLike } = useFirestore('images', id)
+  const { docs } = useFirestore('images', id)
   const { data } = useProfile(id)
+  const { setLike } = usePost(id)
 
   useEffect(() => {
     setuser(data)

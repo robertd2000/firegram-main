@@ -46,6 +46,7 @@ const useStorage = (file, postId) => {
             uid: auth.currentUser.uid,
             like: 0,
             postId,
+            likedUsers: [],
           })
 
           setUrl(url)
@@ -67,6 +68,7 @@ const useStorage = (file, postId) => {
           uid: auth.currentUser.uid,
           like: 0,
           postId,
+          likedUsers: [],
         })
       }
     }
