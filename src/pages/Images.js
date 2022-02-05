@@ -8,7 +8,7 @@ export const Images = () => {
   const [selectedImage, setSelectedImage] = useState(null)
 
   const { docs } = useFirestore('images')
-  const { setLike } = usePost()
+  const { setLike, addComment } = usePost()
   let data = docs.filter((i) => i?.email === selectedImage?.email)[0]
 
   return (
@@ -20,6 +20,7 @@ export const Images = () => {
           setSelectedImage={setSelectedImage}
           author={data}
           setLike={setLike}
+          addComment={addComment}
         />
       )}
     </>

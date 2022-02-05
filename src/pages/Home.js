@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { ImageGrid } from '../comps/ImageGrid'
 import { Modal } from '../comps/PostModal/Modal'
-import useFirestore from '../hooks/useFirestore'
+import useSubs from '../hooks/useSubs'
 import { usePost } from '../hooks/usePost'
+import { auth } from '../firebase/config'
+import useProfile from '../hooks/useProfile'
 
 export const Home = () => {
   const [selectedImage, setSelectedImage] = useState(null)
-
-  const { docs } = useFirestore('images')
+  const { docs } = useSubs('images')
   const { setLike } = usePost()
-  let data = docs.filter((i) => i?.email === selectedImage?.email)[0]
+  let res = docs.filter((i) => i?.email === selectedImage?.email)[0]
 
   return (
     <>
@@ -18,7 +19,7 @@ export const Home = () => {
         <Modal
           selectedImage={selectedImage}
           setSelectedImage={setSelectedImage}
-          author={data}
+          author={res}
           setLike={setLike}
         />
       )}

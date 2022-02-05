@@ -3,9 +3,13 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import s from './PostCard.module.css'
 
-export const Username = ({ author }) => {
+export const Username = ({ author, style, subscribe, currentUser }) => {
+  const onSubscribe = () => {
+    subscribe(author)
+  }
+
   return (
-    <motion.div className={s.username}>
+    <motion.div className={s.username} style={style ? style : ''}>
       <motion.img
         src={
           author.avatar ||
@@ -16,6 +20,13 @@ export const Username = ({ author }) => {
       <motion.p>
         <Link to={`/profile/${author.uid}`}> {author.name}</Link>
       </motion.p>
+      <motion.div>
+        {subscribe && author.uid !== currentUser && (
+          <motion.span className={s.subscribe} onClick={onSubscribe}>
+            Подписаться
+          </motion.span>
+        )}
+      </motion.div>
     </motion.div>
   )
 }

@@ -13,8 +13,8 @@ export const Status = ({ author, setLike, selectedImage, setSelectedPost }) => {
 
   const onSelect = (e) => {
     setSelectedPost(selectedImage)
-    console.log(e)
   }
+
   return (
     <motion.div className={s.status}>
       <motion.div className={s.like}>
@@ -29,7 +29,7 @@ export const Status = ({ author, setLike, selectedImage, setSelectedPost }) => {
         </motion.div>
 
         <motion.div className={s.likeItem}>
-          <Link to={`post/${selectedImage.id}`}>
+          <Link to={`/post/${selectedImage.id}`}>
             <motion.span className={s.commentSymbol}> 💬</motion.span>
           </Link>
 
@@ -38,12 +38,12 @@ export const Status = ({ author, setLike, selectedImage, setSelectedPost }) => {
       </motion.div>
       <motion.div className={s.statustem}>
         <motion.span onClick={onSelect}>
-          Нравится: {like ? like : null}
+          Нравится: {like ? like : 0}
         </motion.span>
       </motion.div>
       {/* <div><b>sendifajri</b> The beach is definitely where I feel most at home. It's my oxygen. I forget how much I need it sometimes when I'm away working.</div> */}
       {/* <div className="comment"><b>johndoe</b> So stunning</div> */}
-      <motion.div className={s.statustem}>{author.name}</motion.div>
+      {/* <motion.div className={s.statustem}>{author.name}</motion.div> */}
     </motion.div>
   )
 }

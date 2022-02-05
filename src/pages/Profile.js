@@ -23,7 +23,7 @@ export const Profile = () => {
 
   const { docs } = useFirestore('images', id)
   const { data } = useProfile(id)
-  const { setLike } = usePost(id)
+  const { setLike, addComment } = usePost(id)
 
   useEffect(() => {
     setuser(data)
@@ -54,6 +54,7 @@ export const Profile = () => {
                 setSelectedImage={setSelectedImage}
                 author={user}
                 setLike={setLike}
+                addComment={addComment}
               />
             )}
           </div>

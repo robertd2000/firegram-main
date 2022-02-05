@@ -776,3 +776,19 @@ hr {
     transform: rotate(140deg);
   }
 }
+
+.comments {
+  max-height: 200px;
+  height: calc(100% - 32px);
+  box-sizing: content-box;
+  overflow: auto;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: calc(100% - 32px);
+}
+
+.comment {
+  margin-left: 10px;
+  font-size: 14px;
+}

@@ -85,5 +85,66 @@ export const usePost = (id) => {
       }
   }
 
-  return { docs, setLike }
+  const addComment = async (postId, author, text) => {
+    console.log(postId, author.uid, text)
+    const q1 = query(
+      collection(projectFirestore, 'images'),
+      where('postId', '==', postId)
+    )
+    const querySnapshot1 = await getDocs(q1)
+    querySnapshot1.forEach(async (d) => {
+      const imgRef = doc(projectFirestore, 'images', d.id)
+      try {
+        await updateDoc(imgRef, {
+          comments: [
+            ...d.data().comments,
+            {
+              comment: text,
+              author: data,
+            },
+          ],
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    })
+
+    //images update
+    const q2 = query(
+      collection(projectFirestore, 'images', author.uid, 'photo'),
+      where('postId', '==', postId)
+    )
+    const querySnapshot = await getDocs(q2)
+    querySnapshot.forEach(async (d) => {
+      const imgRef = doc(projectFirestore, 'images', author.uid, 'photo', d.id)
+
+      try {
+        await updateDoc(imgRef, {
+          comments: [
+            ...d.data().comments,
+            {
+              comment: text,
+              author: data,
+            },
+          ],
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    })
+  }
+
+  const subscribe = async (author) => {
+    const userRef = doc(projectFirestore, 'users', auth.currentUser.uid)
+    const userData = await getDoc(userRef)
+    console.log(userData.data())
+
+    if (!userData.data().subscribes.includes(author.uid)) {
+      await updateDoc(userRef, {
+        subscribes: [...userData.data().subscribes, author.uid],
+      })
+    }
+  }
+
+  return { docs, setLike, addComment, subscribe }
 }

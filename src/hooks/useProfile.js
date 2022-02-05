@@ -23,6 +23,7 @@ const useProfile = (id) => {
           avatarPath: doc.data().avatarPath,
           createdAt: doc.data().createdAt,
           uid: doc.data().uid,
+          subscribes: doc.data().subscribes,
         })
       })
       return () => unsub()

@@ -8,7 +8,13 @@ import { Comment } from './Comment'
 import { Footer } from './Footer'
 import { Liked } from '../Liked'
 
-export const Modal = ({ selectedImage, setSelectedImage, author, setLike }) => {
+export const Modal = ({
+  selectedImage,
+  setSelectedImage,
+  author,
+  setLike,
+  addComment,
+}) => {
   const handleClick = (e) => {
     if (e.target.classList.contains('backdrop')) {
       setSelectedImage(null)
@@ -19,6 +25,7 @@ export const Modal = ({ selectedImage, setSelectedImage, author, setLike }) => {
   const onLikePost = () => {
     setLike(selectedImage.postId, author.uid)
   }
+
   return (
     <motion.div
       className="backdrop"
@@ -39,7 +46,11 @@ export const Modal = ({ selectedImage, setSelectedImage, author, setLike }) => {
           author={author}
           setSelectedPost={setSelectedPost}
         />
-        <Comment />
+        <Comment
+          postId={selectedImage.postId}
+          author={author}
+          addComment={addComment}
+        />
         <Footer author={author} />
       </motion.div>
       {selectedPost && (
