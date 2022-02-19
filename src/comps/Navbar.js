@@ -6,7 +6,7 @@ import useProfile from '../hooks/useProfile'
 
 export const Navbar = () => {
   const { user, signout } = useAuth(auth?.currentUser?.uid)
-  const { data } = useProfile()
+  const { data } = useProfile(auth?.currentUser?.uid)
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
 

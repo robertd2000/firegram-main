@@ -15,12 +15,13 @@ import { motion } from 'framer-motion'
 import { Liked } from '../comps/Liked'
 import { Comments } from '../comps/PostModal/Comments'
 import { auth } from '../firebase/config'
+import { Loading } from '../comps/Loading'
 
 export const Post = () => {
   const { id } = useParams()
-  const { docs, setLike, addComment, subscribe } = usePost(id)
+  const { docs, setLike, addComment, subscribe, unsubscribe } = usePost(id)
   const { data } = useProfile(docs?.uid)
-  const currentUser = auth.currentUser.uid
+  const { data: currentUser } = useProfile(auth?.currentUser?.uid)
 
   const [user, setuser] = useState(null)
   const [post, setPost] = useState(null)
@@ -31,7 +32,7 @@ export const Post = () => {
     setuser(data)
     setPost(docs)
     setComments(docs?.comments)
-  }, [data, id, docs])
+  }, [docs, id, data])
 
   const select = (post) => {
     setSelectedPost(post)
@@ -45,7 +46,7 @@ export const Post = () => {
   return (
     <div className={s.post}>
       <div className={s.postInner}>
-        {post ? (
+        {post && user ? (
           <>
             <Image img={post.url} />
             <motion.div className={s.postInfo}>
@@ -53,6 +54,7 @@ export const Post = () => {
                 author={user}
                 subscribe={subscribe}
                 currentUser={currentUser}
+                unsubscribe={unsubscribe}
               />
               <Status
                 setLike={setLike}
@@ -61,7 +63,7 @@ export const Post = () => {
                 setSelectedPost={select}
               />
               <Footer author={user} />
-              <Comments comments={comments} />
+              <Comments comments={comments} currentUser={currentUser} />
               <Comment
                 addComment={onComment}
                 author={user}
@@ -73,7 +75,7 @@ export const Post = () => {
             )}
           </>
         ) : (
-          ''
+          <Loading />
         )}
       </div>
     </div>

@@ -18,6 +18,10 @@ const useFirestore = (col) => {
     if (data) {
       let projectCollection = collection(projectFirestore, col)
 
+      if (data.subscribes.length === 0) {
+        setDocs([])
+        return
+      }
       const q = query(
         projectCollection,
         orderBy('createdAt', 'desc'),

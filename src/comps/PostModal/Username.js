@@ -3,10 +3,23 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import s from './PostCard.module.css'
 
-export const Username = ({ author, style, subscribe, currentUser }) => {
+export const Username = ({
+  author,
+  style,
+  subscribe,
+  currentUser,
+  unsubscribe,
+}) => {
   const onSubscribe = () => {
     subscribe(author)
   }
+
+  const onUnsubscribe = () => {
+    unsubscribe(author)
+  }
+
+  console.log(author)
+  console.log(currentUser)
 
   return (
     <motion.div className={s.username} style={style ? style : ''}>
@@ -21,10 +34,18 @@ export const Username = ({ author, style, subscribe, currentUser }) => {
         <Link to={`/profile/${author.uid}`}> {author.name}</Link>
       </motion.p>
       <motion.div>
-        {subscribe && author.uid !== currentUser && (
-          <motion.span className={s.subscribe} onClick={onSubscribe}>
-            Подписаться
-          </motion.span>
+        {author.uid !== currentUser.uid && (
+          <>
+            {subscribe && !currentUser.subscribes.includes(author.uid) ? (
+              <motion.span className={s.subscribe} onClick={onSubscribe}>
+                Подписаться
+              </motion.span>
+            ) : (
+              <motion.span className={s.subscribe} onClick={onUnsubscribe}>
+                Отписаться
+              </motion.span>
+            )}
+          </>
         )}
       </motion.div>
     </motion.div>

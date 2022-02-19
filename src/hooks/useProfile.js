@@ -12,8 +12,14 @@ const useProfile = (id) => {
   const [data, setdata] = useState(null)
 
   useEffect(() => {
-    if (auth.currentUser) {
-      const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
+    // if (auth.currentUser)
+    if (id) {
+      const userRef = doc(
+        projectFirestore,
+        'users',
+        id
+        //  || auth?.currentUser?.uid
+      )
 
       const unsub = onSnapshot(userRef, (doc) => {
         setdata({
@@ -24,21 +30,23 @@ const useProfile = (id) => {
           createdAt: doc.data().createdAt,
           uid: doc.data().uid,
           subscribes: doc.data().subscribes,
+          subscribers: doc.data().subscribers,
         })
       })
       return () => unsub()
     }
-  }, [id, auth.currentUser])
+  }, [id, auth?.currentUser])
 
   const getProfileData = async () => {
-    const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
+    const userRef = doc(projectFirestore, 'users', id)
 
     const docSnap = await getDoc(userRef)
-    return docSnap
+    console.log(id)
+    return docSnap.data()
   }
 
   const uploadImg = async (img, user, setImg) => {
-    const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
+    const userRef = doc(projectFirestore, 'users', id || auth?.currentUser?.uid)
 
     const imgRef = ref(
       projectStorage,
@@ -63,7 +71,11 @@ const useProfile = (id) => {
 
   const deleteAvatar = async (user) => {
     try {
-      const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
+      const userRef = doc(
+        projectFirestore,
+        'users',
+        id || auth?.currentUser?.uid
+      )
 
       const confirm = window.confirm('Delete avatar?')
       if (confirm) {
@@ -81,7 +93,7 @@ const useProfile = (id) => {
   }
 
   const updateProfileData = async (name) => {
-    const userRef = doc(projectFirestore, 'users', id || auth.currentUser.uid)
+    const userRef = doc(projectFirestore, 'users', id || auth?.currentUser?.uid)
 
     try {
       await updateDoc(userRef, {

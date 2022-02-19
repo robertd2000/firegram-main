@@ -45,7 +45,7 @@ export const Profile = () => {
           <div>
             <ImageGrid
               setSelectedImage={setSelectedImage}
-              id={id}
+              // id={id}
               docs={docsList}
             />
             {selectedImage && (
@@ -55,6 +55,7 @@ export const Profile = () => {
                 author={user}
                 setLike={setLike}
                 addComment={addComment}
+                currentUser={data}
               />
             )}
           </div>

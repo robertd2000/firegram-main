@@ -10,6 +10,7 @@ export const Home = () => {
   const [selectedImage, setSelectedImage] = useState(null)
   const { docs } = useSubs('images')
   const { setLike } = usePost()
+  const { data } = useProfile(auth?.currentUser?.uid)
   let res = docs.filter((i) => i?.email === selectedImage?.email)[0]
 
   return (
@@ -21,6 +22,7 @@ export const Home = () => {
           setSelectedImage={setSelectedImage}
           author={res}
           setLike={setLike}
+          currentUser={data}
         />
       )}
     </>

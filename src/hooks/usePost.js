@@ -14,7 +14,7 @@ import useProfile from './useProfile'
 
 export const usePost = (id) => {
   const [docs, setDocs] = useState(null)
-  const { data } = useProfile(auth.currentUser.uid)
+  const { data } = useProfile(auth?.currentUser?.uid)
 
   useEffect(() => {
     if (id) {
@@ -86,7 +86,6 @@ export const usePost = (id) => {
   }
 
   const addComment = async (postId, author, text) => {
-    console.log(postId, author.uid, text)
     const q1 = query(
       collection(projectFirestore, 'images'),
       where('postId', '==', postId)
@@ -135,16 +134,51 @@ export const usePost = (id) => {
   }
 
   const subscribe = async (author) => {
-    const userRef = doc(projectFirestore, 'users', auth.currentUser.uid)
+    const userRef = doc(projectFirestore, 'users', auth?.currentUser?.uid)
     const userData = await getDoc(userRef)
-    console.log(userData.data())
 
     if (!userData.data().subscribes.includes(author.uid)) {
       await updateDoc(userRef, {
         subscribes: [...userData.data().subscribes, author.uid],
       })
     }
+
+    const authorRef = doc(projectFirestore, 'users', author.uid)
+    const authorData = await getDoc(authorRef)
+
+    if (!authorData.data().subscribers.includes(auth?.currentUser?.uid)) {
+      await updateDoc(authorRef, {
+        subscribers: [...authorData.data().subscribers, auth?.currentUser?.uid],
+      })
+    }
   }
 
-  return { docs, setLike, addComment, subscribe }
+  const unsubscribe = async (author) => {
+    const userRef = doc(projectFirestore, 'users', auth?.currentUser?.uid)
+    const userData = await getDoc(userRef)
+
+    if (userData.data().subscribes.includes(author.uid)) {
+      const subscribes = userData.data().subscribes.filter((i) => {
+        return i !== author.uid
+      })
+
+      await updateDoc(userRef, {
+        subscribes,
+      })
+    }
+
+    const authorRef = doc(projectFirestore, 'users', author.uid)
+    const authorData = await getDoc(authorRef)
+
+    if (authorData.data().subscribers.includes(auth?.currentUser?.uid)) {
+      const subscribers = authorData
+        .data()
+        .subscribers.filter((i) => i !== auth?.currentUser?.uid)
+      await updateDoc(authorRef, {
+        subscribers,
+      })
+    }
+  }
+
+  return { docs, setLike, addComment, subscribe, unsubscribe }
 }

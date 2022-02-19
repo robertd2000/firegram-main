@@ -69,6 +69,7 @@ const useStorage = (file, postId) => {
           like: 0,
           postId,
           likedUsers: [],
+          comments: [],
         })
       }
     }
