@@ -28,6 +28,14 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/firegram-main"
+            element={
+              <PrivateRoute user={user}>
+                <Home />
+              </PrivateRoute>
+            }
+          />
           <Route path="/images" element={<Images />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
