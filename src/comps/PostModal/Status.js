@@ -3,11 +3,18 @@ import { motion } from 'framer-motion'
 import s from './PostCard.module.css'
 import { Link } from 'react-router-dom'
 
-export const Status = ({ author, setLike, selectedImage, setSelectedPost }) => {
+export const Status = ({
+  author,
+  setLike,
+  selectedImage,
+  setSelectedPost,
+  postId,
+  isAll,
+}) => {
   const [like, setlike] = useState(selectedImage.like)
 
   const onSetLike = () => {
-    setLike()
+    setLike(postId, author.uid)
     setlike(selectedImage.like + 1)
   }
 
@@ -29,7 +36,13 @@ export const Status = ({ author, setLike, selectedImage, setSelectedPost }) => {
         </motion.div>
 
         <motion.div className={s.likeItem}>
-          <Link to={`/post/${selectedImage.id}`}>
+          <Link
+            to={
+              !isAll
+                ? `/post/${author.uid}/${selectedImage.id}`
+                : `/post/${selectedImage.id}`
+            }
+          >
             <motion.span className={s.commentSymbol}> 💬</motion.span>
           </Link>
 

@@ -12,12 +12,19 @@ import { useEffect, useState } from 'react'
 import { auth, projectFirestore } from '../firebase/config'
 import useProfile from './useProfile'
 
-export const usePost = (id) => {
+export const usePost = (id, userId) => {
   const [docs, setDocs] = useState(null)
   const { data } = useProfile(auth?.currentUser?.uid)
 
   useEffect(() => {
-    if (id) {
+    if (id && userId) {
+      const docRef = doc(projectFirestore, 'images', userId, 'photo', id)
+      const unsub = onSnapshot(docRef, (doc) => {
+        setDocs(doc.data())
+      })
+
+      return () => unsub()
+    } else if (id) {
       const docRef = doc(projectFirestore, 'images', id)
       const unsub = onSnapshot(docRef, (doc) => {
         setDocs(doc.data())
@@ -25,7 +32,7 @@ export const usePost = (id) => {
 
       return () => unsub()
     }
-  }, [id])
+  }, [id, userId])
 
   const setLike = async (postId, uid) => {
     const q1 = query(

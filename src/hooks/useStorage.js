@@ -13,7 +13,7 @@ const useStorage = (file, postId) => {
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState(null)
   const [url, setUrl] = useState(null)
-  const { data } = useProfile()
+  const { data } = useProfile(auth.currentUser.uid)
 
   useEffect(() => {
     const storageRef = ref(projectStorage, file.name)

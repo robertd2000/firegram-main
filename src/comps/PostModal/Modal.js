@@ -15,6 +15,7 @@ export const Modal = ({
   setLike,
   addComment,
   currentUser,
+  isAll,
 }) => {
   const handleClick = (e) => {
     if (e.target.classList.contains('backdrop')) {
@@ -22,8 +23,6 @@ export const Modal = ({
     }
   }
   const [selectedPost, setSelectedPost] = useState(null)
-
-  console.log(author)
 
   const onLikePost = () => {
     setLike(selectedImage.postId, author.uid)
@@ -48,6 +47,7 @@ export const Modal = ({
           selectedImage={selectedImage}
           author={author}
           setSelectedPost={setSelectedPost}
+          isAll={isAll}
         />
         <Comment
           postId={selectedImage.postId}

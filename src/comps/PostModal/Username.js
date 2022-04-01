@@ -18,9 +18,6 @@ export const Username = ({
     unsubscribe(author)
   }
 
-  console.log(author)
-  console.log(currentUser)
-
   return (
     <motion.div className={s.username} style={style ? style : ''}>
       <motion.img

@@ -25,6 +25,7 @@ export const Images = () => {
           setLike={setLike}
           addComment={addComment}
           currentUser={data}
+          isAll={true}
         />
       )}
     </>

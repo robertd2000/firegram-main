@@ -17,11 +17,13 @@ import { Comments } from '../comps/PostModal/Comments'
 import { auth } from '../firebase/config'
 import { Loading } from '../comps/Loading'
 
+//Нужно полностью переработать
+// Принимать в виде пропсов id создателя поста
 export const Post = () => {
-  const { id } = useParams()
-  const { docs, setLike, addComment, subscribe, unsubscribe } = usePost(id)
-  const { data } = useProfile(docs?.uid)
+  const { id, uid } = useParams()
   const { data: currentUser } = useProfile(auth?.currentUser?.uid)
+  const { docs, setLike, addComment, subscribe, unsubscribe } = usePost(id, uid)
+  const { data } = useProfile(docs?.uid)
 
   const [user, setuser] = useState(null)
   const [post, setPost] = useState(null)
@@ -32,7 +34,7 @@ export const Post = () => {
     setuser(data)
     setPost(docs)
     setComments(docs?.comments)
-  }, [docs, id, data])
+  }, [docs, id, data, currentUser])
 
   const select = (post) => {
     setSelectedPost(post)
@@ -61,6 +63,7 @@ export const Post = () => {
                 selectedImage={post}
                 author={user}
                 setSelectedPost={select}
+                postId={id}
               />
               <Footer author={user} />
               <Comments comments={comments} currentUser={currentUser} />

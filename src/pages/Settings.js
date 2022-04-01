@@ -7,7 +7,7 @@ import { auth } from '../firebase/config'
 export const Settings = () => {
   const [user, setuser] = useState(null)
   const [img, setImg] = useState('')
-  const { uploadImg, deleteAvatar, data } = useProfile()
+  const { uploadImg, deleteAvatar, data } = useProfile(auth.currentUser.uid)
 
   useEffect(() => {
     setuser(data)

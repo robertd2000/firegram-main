@@ -41,7 +41,6 @@ const useProfile = (id) => {
     const userRef = doc(projectFirestore, 'users', id)
 
     const docSnap = await getDoc(userRef)
-    console.log(id)
     return docSnap.data()
   }
 

@@ -1,19 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { auth } from '../firebase/config'
 import useAuth from '../hooks/useAuth'
 import useProfile from '../hooks/useProfile'
+import { BurgerMenu } from './BurgerMenu'
+import { Menu } from './Menu'
 
 export const Navbar = () => {
   const { user, signout } = useAuth(auth?.currentUser?.uid)
   const { data } = useProfile(auth?.currentUser?.uid)
   const [name, setName] = useState('')
+  const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth)
   const [image, setImage] = useState('')
 
   useEffect(() => {
     setName(data?.name)
     setImage(data?.avatar)
   }, [data])
+
+  useEffect(() => {
+    window.onresize = () => {
+      setWindowInnerWidth(window.innerWidth)
+    }
+  }, [])
 
   return (
     <nav id="navbar">
@@ -25,48 +34,12 @@ export const Navbar = () => {
             </div>
           </Link>
         </div>
-
-        <ul id="menu">
-          {user ? (
-            <>
-              <li>
-                <a className="btn" onClick={signout}>
-                  Выйти
-                </a>
-              </li>
-
-              <li>
-                <Link to={`/profile/${user.uid}`}>
-                  {name ? name : 'Profile'}
-                </Link>
-              </li>
-
-              <li>
-                <div className="nav_avatar ">
-                  <img
-                    src={
-                      image ||
-                      'https://imdezcode.files.wordpress.com/2020/02/imdezcode-logo.png'
-                    }
-                    alt="avatar"
-                  />
-                </div>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link to="/login">Войти</Link>
-              </li>
-              <li>
-                <Link to="/register">Зарегистрироваться</Link>
-              </li>
-            </>
-          )}
-          <li>
-            <Link to="/images">Все картинки</Link>
-          </li>
-        </ul>
+        {windowInnerWidth > 768 ? (
+          <Menu user={user} name={name} image={image} signout={signout} />
+        ) : (
+          <BurgerMenu user={user} name={name} image={image} signout={signout} />
+        )}
+        {/*  */}
       </div>
     </nav>
   )
