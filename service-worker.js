@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/firegram-main/precache-manifest.df83241626f251fad79997d0921ebebe.js"
+  "/firegram-main/precache-manifest.3bd3eb0451b134c34ec592858f9b564f.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/firegram-main/static/css/main.b48afc14.chunk.css",
-    "main.js": "/firegram-main/static/js/main.49b05a56.chunk.js",
-    "main.js.map": "/firegram-main/static/js/main.49b05a56.chunk.js.map",
+    "main.js": "/firegram-main/static/js/main.e5c0f761.chunk.js",
+    "main.js.map": "/firegram-main/static/js/main.e5c0f761.chunk.js.map",
     "runtime-main.js": "/firegram-main/static/js/runtime-main.268108cc.js",
     "runtime-main.js.map": "/firegram-main/static/js/runtime-main.268108cc.js.map",
-    "static/js/2.0153de13.chunk.js": "/firegram-main/static/js/2.0153de13.chunk.js",
-    "static/js/2.0153de13.chunk.js.map": "/firegram-main/static/js/2.0153de13.chunk.js.map",
+    "static/js/2.69d93f69.chunk.js": "/firegram-main/static/js/2.69d93f69.chunk.js",
+    "static/js/2.69d93f69.chunk.js.map": "/firegram-main/static/js/2.69d93f69.chunk.js.map",
     "index.html": "/firegram-main/index.html",
-    "precache-manifest.df83241626f251fad79997d0921ebebe.js": "/firegram-main/precache-manifest.df83241626f251fad79997d0921ebebe.js",
+    "precache-manifest.3bd3eb0451b134c34ec592858f9b564f.js": "/firegram-main/precache-manifest.3bd3eb0451b134c34ec592858f9b564f.js",
     "service-worker.js": "/firegram-main/service-worker.js",
     "static/css/main.b48afc14.chunk.css.map": "/firegram-main/static/css/main.b48afc14.chunk.css.map",
-    "static/js/2.0153de13.chunk.js.LICENSE.txt": "/firegram-main/static/js/2.0153de13.chunk.js.LICENSE.txt"
+    "static/js/2.69d93f69.chunk.js.LICENSE.txt": "/firegram-main/static/js/2.69d93f69.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.268108cc.js",
-    "static/js/2.0153de13.chunk.js",
+    "static/js/2.69d93f69.chunk.js",
     "static/css/main.b48afc14.chunk.css",
-    "static/js/main.49b05a56.chunk.js"
+    "static/js/main.e5c0f761.chunk.js"
   ]
 }
