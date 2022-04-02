@@ -1,3 +1,13 @@
+
+Приложение-социальная сеть для просмотра и публикации фото
+Есть возможность ставить лайки и оставлять комментарии к фото
+В приложении реализована авторизация
+Можно просматривать профили других пользователей
+
+Написано на React JS, Firebase.
+
+[Протестировать](https://robertd2000.github.io/firegram-main/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
