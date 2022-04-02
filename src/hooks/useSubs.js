@@ -1,6 +1,5 @@
 import {
   collection,
-  doc,
   onSnapshot,
   orderBy,
   query,
@@ -15,10 +14,10 @@ const useFirestore = (col) => {
   const { data } = useProfile(auth.currentUser.uid)
 
   useEffect(() => {
-    if (data) {
+    if (data?.subscribes) {
       let projectCollection = collection(projectFirestore, col)
 
-      if (data.subscribes.length === 0) {
+      if (data?.subscribes?.length === 0) {
         setDocs([])
         return
       }

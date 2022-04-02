@@ -22,7 +22,7 @@ export const Menu = ({
       {user ? (
         <>
           <li>
-            <a
+            <span
               className="btn"
               onClick={() => {
                 signout()
@@ -30,7 +30,7 @@ export const Menu = ({
               }}
             >
               Выйти
-            </a>
+            </span>
           </li>
 
           <li>

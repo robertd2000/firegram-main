@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
+import { AuthButton } from '../comps/AuthButton'
 import useAuth from '../hooks/useAuth'
+import { formatErrorMessage } from '../utils'
 import s from './Registration.module.css'
 
 export const Register = () => {
@@ -12,7 +14,7 @@ export const Register = () => {
     loading: false,
   })
 
-  const { signup } = useAuth()
+  const { signup, error: authError } = useAuth()
 
   const handleChange = (e) => {
     setData({
@@ -36,6 +38,16 @@ export const Register = () => {
       loading: false,
     })
   }
+
+  useEffect(() => {
+    if (authError) {
+      setData({
+        ...data,
+        error: formatErrorMessage(authError),
+        loading: false,
+      })
+    }
+  }, [authError, data])
 
   const { name, email, password, error, loading } = data
 
@@ -68,12 +80,12 @@ export const Register = () => {
               onChange={handleChange}
             />
             <span className={s.clearfix}></span>
-            <button className={s.btn} disabled={loading}>
+            <AuthButton className={s.btn} disabled={loading}>
               {!loading ? 'Зарегистрироваться' : 'Регистрация...'}
-            </button>
+            </AuthButton>
           </form>
         </div>
-        {error ? <p classNameName="error">{error}</p> : null}
+        {error ? <p className="error">{error}</p> : null}
       </div>
     </div>
   )

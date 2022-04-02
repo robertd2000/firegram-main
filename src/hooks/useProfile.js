@@ -11,6 +11,8 @@ import { auth, projectFirestore, projectStorage } from '../firebase/config'
 const useProfile = (id) => {
   const [data, setdata] = useState(null)
 
+  let currentUser = auth?.currentUser
+
   useEffect(() => {
     // if (auth.currentUser)
     if (id) {
@@ -35,7 +37,7 @@ const useProfile = (id) => {
       })
       return () => unsub()
     }
-  }, [id, auth?.currentUser])
+  }, [id, currentUser])
 
   const getProfileData = async () => {
     const userRef = doc(projectFirestore, 'users', id)

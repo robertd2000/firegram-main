@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
+import { formatErrorMessage } from '../utils'
 import s from './Registration.module.css'
 
 export const Login = () => {
-  const { signIn } = useAuth()
+  const { error: authError, signIn } = useAuth()
 
   const [data, setData] = useState({
     email: '',
@@ -32,11 +33,22 @@ export const Login = () => {
     if (!email || !password) {
       setData({
         ...data,
-        error: 'All fields are required!',
+        error: 'Все поля обязательны!',
       })
     }
     signIn(email, password)
   }
+
+  useEffect(() => {
+    if (authError) {
+      console.log(authError)
+      setData({
+        ...data,
+        error: formatErrorMessage(authError),
+        loading: false,
+      })
+    }
+  }, [authError, data])
 
   return (
     <div className={s.container}>
@@ -69,7 +81,7 @@ export const Login = () => {
             </p>
           </form>
         </div>
-        {error ? <p classNameName="error">{error}</p> : null}
+        {error ? <p className="error">{error}</p> : null}
       </div>
     </div>
   )

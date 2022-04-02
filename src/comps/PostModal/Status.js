@@ -43,7 +43,14 @@ export const Status = ({
                 : `/post/${selectedImage.id}`
             }
           >
-            <motion.span className={s.commentSymbol}> 💬</motion.span>
+            <motion.span
+              className={s.commentSymbol}
+              role="img"
+              aria-label="comments"
+            >
+              {' '}
+              💬
+            </motion.span>
           </Link>
 
           {/* <motion.img src="https://cdn4.iconfinder.com/data/icons/app-custom-ui-1/48/Chat_bubble-128.png"></motion.img> */}

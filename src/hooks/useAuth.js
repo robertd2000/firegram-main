@@ -12,6 +12,7 @@ import { auth, projectFirestore } from '../firebase/config'
 
 const useAuth = () => {
   const [user, setuser] = useState(null)
+  const [error, setError] = useState(null)
 
   const history = useNavigate()
 
@@ -36,9 +37,11 @@ const useAuth = () => {
         createdAt: Timestamp.fromDate(new Date()),
       })
       setuser(result.user)
+      setError(false)
       history('/')
     } catch (error) {
       setuser(false)
+      setError(error.message)
     }
   }
 
@@ -47,9 +50,11 @@ const useAuth = () => {
       const result = await signInWithEmailAndPassword(auth, email, password)
 
       setuser(result.user)
+      setError(false)
       history('/')
     } catch (error) {
       setuser(false)
+      setError(error.message)
     }
   }
 
@@ -58,7 +63,7 @@ const useAuth = () => {
     history('/login')
   }
 
-  return { user, signup, signout, signIn }
+  return { user, error, signup, signout, signIn }
 }
 
 export default useAuth

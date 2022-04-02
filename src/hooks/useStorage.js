@@ -73,7 +73,7 @@ const useStorage = (file, postId) => {
         })
       }
     }
-  }, [file, data])
+  }, [file, data, postId])
 
   return { progress, url, error }
 }

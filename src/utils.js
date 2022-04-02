@@ -10,3 +10,25 @@ export const formatDate = (date) => {
 
   return dd + '.' + mm + '.' + yy
 }
+
+export const formatErrorMessage = (message) => {
+  switch (message) {
+    case 'Firebase: Error (auth/email-already-in-use).':
+      return 'Пользователь с таким email уже существует!'
+
+    case 'Firebase: Error (auth/invalid-email).':
+      return 'Неправильный email!'
+
+    case 'Firebase: Error (auth/internal-error).':
+      return 'Все поля обязательны!'
+
+    case 'Firebase: Error (auth/user-not-found).':
+      return 'Такого пользователя не существвует!'
+
+    case 'Firebase: Error (auth/wrong-password).':
+      return 'Неправильный пароль!'
+
+    default:
+      break
+  }
+}

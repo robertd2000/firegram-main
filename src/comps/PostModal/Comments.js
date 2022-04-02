@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Username } from './Username'
 
 export const Comments = ({ comments, currentUser }) => {
