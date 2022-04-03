@@ -2,9 +2,8 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { ImageGrid } from '../comps/ImageGrid'
+import { ImageContent } from '../comps/ImageContent'
 import { Loading } from '../comps/Loading'
-import { Modal } from '../comps/PostModal/Modal'
 import { Sidenav } from '../comps/Sidenav'
 import Title from '../comps/Title'
 import { UploadForm } from '../comps/UploadForm'
@@ -47,24 +46,16 @@ export const Profile = () => {
             </>
           )}
 
-          <div>
-            <ImageGrid
-              setSelectedImage={setSelectedImage}
-              // id={id}
-              docs={docsList}
-              loading={loading}
-            />
-            {selectedImage && (
-              <Modal
-                selectedImage={selectedImage}
-                setSelectedImage={setSelectedImage}
-                author={user}
-                setLike={setLike}
-                addComment={addComment}
-                currentUser={data}
-              />
-            )}
-          </div>
+          <ImageContent
+            docs={docsList}
+            currentUser={data}
+            selectedImage={selectedImage}
+            loading={loading}
+            author={user}
+            setLike={setLike}
+            addComment={addComment}
+            setSelectedImage={setSelectedImage}
+          />
         </>
       ) : (
         'No data'

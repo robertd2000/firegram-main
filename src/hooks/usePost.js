@@ -84,11 +84,16 @@ export const usePost = (id, userId) => {
     const profileRef = doc(projectFirestore, 'users', data.uid)
     const docSnap = await getDoc(profileRef)
 
-    if (!docSnap.data().likedPosts.includes(postId))
+    let likedPosts = !docSnap.data().likedPosts || []
+
+    if (
+      !docSnap.data().likedPosts ||
+      !docSnap.data().likedPosts.includes(postId)
+    )
       try {
         await updateDoc(profileRef, {
           likedPosts: docSnap.data().likedPosts
-            ? [...docSnap.data().likedPosts, postId]
+            ? [...likedPosts, postId]
             : [postId],
         })
       } catch (error) {
@@ -152,18 +157,28 @@ export const usePost = (id, userId) => {
     const userRef = doc(projectFirestore, 'users', auth?.currentUser?.uid)
     const userData = await getDoc(userRef)
 
-    if (!userData.data().subscribes.includes(author.uid)) {
+    let subscribes = userData.data().subscribes || []
+
+    if (
+      !userData.data().subscribes ||
+      !userData.data().subscribes.includes(author.uid)
+    ) {
       await updateDoc(userRef, {
-        subscribes: [...userData.data().subscribes, author.uid],
+        subscribes: [...subscribes, author.uid],
       })
     }
 
     const authorRef = doc(projectFirestore, 'users', author.uid)
     const authorData = await getDoc(authorRef)
 
-    if (!authorData.data().subscribers.includes(auth?.currentUser?.uid)) {
+    let subscribers = authorData.data().subscribers || []
+
+    if (
+      !authorData.data().subscribers ||
+      !authorData.data().subscribers.includes(auth?.currentUser?.uid)
+    ) {
       await updateDoc(authorRef, {
-        subscribers: [...authorData.data().subscribers, auth?.currentUser?.uid],
+        subscribers: [...subscribers, auth?.currentUser?.uid],
       })
     }
   }

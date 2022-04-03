@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { ImageGrid } from '../comps/ImageGrid'
-import { Modal } from '../comps/PostModal/Modal'
 import { Loading } from '../comps/Loading'
 import useSubs from '../hooks/useSubs'
 import { usePost } from '../hooks/usePost'
 import { auth } from '../firebase/config'
 import useProfile from '../hooks/useProfile'
+import { ImageContent } from '../comps/ImageContent'
 
 export const Home = () => {
   const [selectedImage, setSelectedImage] = useState(null)
@@ -24,26 +23,19 @@ export const Home = () => {
   return (
     <>
       {docs.length !== 0 ? (
-        <>
-          <ImageGrid
-            setSelectedImage={setSelectedImage}
-            docs={docs}
-            loading={loading}
-          />
-          {selectedImage && (
-            <Modal
-              selectedImage={selectedImage}
-              setSelectedImage={setSelectedImage}
-              author={res}
-              setLike={setLike}
-              currentUser={data}
-              isAll={true}
-              subscribe={subscribe}
-              unsubscribe={unsubscribe}
-              addComment={addComment}
-            />
-          )}
-        </>
+        <ImageContent
+          setSelectedImage={setSelectedImage}
+          docs={docs}
+          selectedImage={selectedImage}
+          loading={loading}
+          author={res}
+          currentUser={data}
+          isAll={true}
+          subscribe={subscribe}
+          unsubscribe={unsubscribe}
+          setLike={setLike}
+          addComment={addComment}
+        />
       ) : (
         'Нет подписок:('
       )}
