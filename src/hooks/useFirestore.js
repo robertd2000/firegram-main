@@ -4,6 +4,7 @@ import { projectFirestore } from '../firebase/config'
 
 const useFirestore = (col, id) => {
   const [docs, setDocs] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     let projectCollection
@@ -24,11 +25,12 @@ const useFirestore = (col, id) => {
         })
       })
       setDocs(documents)
+      setLoading(false)
     })
     return () => unsub()
   }, [col, id])
 
-  return { docs }
+  return { docs, loading }
 }
 
 export default useFirestore

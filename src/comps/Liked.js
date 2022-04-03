@@ -26,7 +26,7 @@ export const Liked = ({ likedUsers, setSelectedPost = (r) => r }) => {
         </motion.div>
         <motion.div className={s.likedContent}>
           {likedUsers ? (
-            <motion.div>
+            <>
               {likedUsers.map((i) => {
                 return (
                   <div className={s.likedItem} key={i.uid}>
@@ -34,7 +34,7 @@ export const Liked = ({ likedUsers, setSelectedPost = (r) => r }) => {
                   </div>
                 )
               })}
-            </motion.div>
+            </>
           ) : null}
         </motion.div>
       </motion.div>

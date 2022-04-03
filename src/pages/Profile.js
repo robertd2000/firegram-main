@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ImageGrid } from '../comps/ImageGrid'
+import { Loading } from '../comps/Loading'
 import { Modal } from '../comps/PostModal/Modal'
 import { Sidenav } from '../comps/Sidenav'
 import Title from '../comps/Title'
@@ -21,7 +22,7 @@ export const Profile = () => {
 
   const [docsList, setDocsList] = useState([])
 
-  const { docs } = useFirestore('images', id)
+  const { docs, loading } = useFirestore('images', id)
   const { data } = useProfile(id)
   const { setLike, addComment } = usePost(id)
 
@@ -29,6 +30,10 @@ export const Profile = () => {
     setuser(data)
     setDocsList(docs)
   }, [data, id, docs])
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <div>
@@ -47,6 +52,7 @@ export const Profile = () => {
               setSelectedImage={setSelectedImage}
               // id={id}
               docs={docsList}
+              loading={loading}
             />
             {selectedImage && (
               <Modal

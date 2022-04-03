@@ -20,7 +20,8 @@ import { Loading } from '../comps/Loading'
 export const Post = () => {
   const { id, uid } = useParams()
   const { data: currentUser } = useProfile(auth?.currentUser?.uid)
-  const { docs, setLike, addComment, subscribe, unsubscribe } = usePost(id, uid)
+  const { docs, loading, setLike, addComment, subscribe, unsubscribe } =
+    usePost(id, uid)
   const { data } = useProfile(docs?.uid)
 
   const [user, setuser] = useState(null)
@@ -43,12 +44,19 @@ export const Post = () => {
     setComments([...comments, { author, text }])
   }
 
+  if (loading) {
+    return <Loading />
+  }
+
   return (
     <div className={s.post}>
       <div className={s.postInner}>
         {post && user ? (
           <>
-            <Image img={post.url} />
+            <motion.div className={s.postImgBig}>
+              <Image img={post.url} />
+            </motion.div>
+
             <motion.div className={s.postInfo}>
               <Username
                 author={user}

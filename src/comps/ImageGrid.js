@@ -1,7 +1,19 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 
-export const ImageGrid = ({ docs, setSelectedImage = (r) => r }) => {
+export const ImageGrid = ({
+  docs,
+  loading = false,
+  setSelectedImage = (r) => r,
+}) => {
+  if (loading) {
+    return (
+      <div className="loader">
+        <div className="loader_inner"></div>
+      </div>
+    )
+  }
+
   return (
     <div className="img-grid">
       {docs ? (

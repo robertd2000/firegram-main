@@ -14,6 +14,8 @@ import useProfile from './useProfile'
 
 export const usePost = (id, userId) => {
   const [docs, setDocs] = useState(null)
+  const [loading, setLoading] = useState(true)
+
   const { data } = useProfile(auth?.currentUser?.uid)
 
   useEffect(() => {
@@ -21,6 +23,7 @@ export const usePost = (id, userId) => {
       const docRef = doc(projectFirestore, 'images', userId, 'photo', id)
       const unsub = onSnapshot(docRef, (doc) => {
         setDocs(doc.data())
+        setLoading(false)
       })
 
       return () => unsub()
@@ -28,6 +31,7 @@ export const usePost = (id, userId) => {
       const docRef = doc(projectFirestore, 'images', id)
       const unsub = onSnapshot(docRef, (doc) => {
         setDocs(doc.data())
+        setLoading(false)
       })
 
       return () => unsub()
@@ -191,5 +195,5 @@ export const usePost = (id, userId) => {
     }
   }
 
-  return { docs, setLike, addComment, subscribe, unsubscribe }
+  return { docs, loading, setLike, addComment, subscribe, unsubscribe }
 }

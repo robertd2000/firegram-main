@@ -31,9 +31,9 @@ export const Username = ({
         <Link to={`/profile/${author.uid}`}> {author.name}</Link>
       </motion.p>
       <motion.div>
-        {author.uid !== currentUser.uid && (
+        {author?.uid !== currentUser?.uid && (
           <>
-            {subscribe && !currentUser.subscribes.includes(author.uid) ? (
+            {subscribe && !currentUser?.subscribes?.includes(author?.uid) ? (
               <motion.span className={s.subscribe} onClick={onSubscribe}>
                 Подписаться
               </motion.span>

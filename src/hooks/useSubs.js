@@ -11,6 +11,8 @@ import useProfile from './useProfile'
 
 const useFirestore = (col) => {
   const [docs, setDocs] = useState([])
+  const [loading, setLoading] = useState(true)
+
   const { data } = useProfile(auth.currentUser.uid)
 
   useEffect(() => {
@@ -19,6 +21,7 @@ const useFirestore = (col) => {
 
       if (data?.subscribes?.length === 0) {
         setDocs([])
+        setLoading(false)
         return
       }
       const q = query(
@@ -36,6 +39,7 @@ const useFirestore = (col) => {
           })
         })
         setDocs(documents)
+        setLoading(false)
       })
       return () => unsub()
     }
@@ -43,7 +47,7 @@ const useFirestore = (col) => {
     // const userData = await getDoc(userRef)
   }, [col, data])
 
-  return { docs }
+  return { docs, loading }
 }
 
 export default useFirestore
