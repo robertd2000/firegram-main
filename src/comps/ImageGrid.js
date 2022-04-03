@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 
-export const ImageGrid = ({ setSelectedImage, docs }) => {
+export const ImageGrid = ({ docs, setSelectedImage = (r) => r }) => {
   return (
     <div className="img-grid">
       {docs ? (

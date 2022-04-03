@@ -41,7 +41,6 @@ export const Login = () => {
 
   useEffect(() => {
     if (authError) {
-      console.log(authError)
       setData({
         ...data,
         error: formatErrorMessage(authError),

@@ -2,7 +2,11 @@ import React from 'react'
 import Camera from './Camera'
 import Delete from './Delete'
 
-export const ImageContainer = ({ avatar, deleteImage, setImg }) => {
+export const ImageContainer = ({
+  avatar,
+  deleteImage = (r) => r,
+  setImg = (r) => r,
+}) => {
   return (
     <div className="img_container ">
       <img

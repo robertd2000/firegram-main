@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 
 export const Status = ({
   author,
-  setLike,
   selectedImage,
-  setSelectedPost,
   postId,
   isAll,
+  setLike = (r) => r,
+  setSelectedPost = (r) => r,
 }) => {
   const [like, setlike] = useState(selectedImage.like)
 

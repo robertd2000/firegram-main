@@ -3,7 +3,13 @@ import { Link } from 'react-router-dom'
 import { auth } from '../firebase/config'
 import { ImageContainer } from './ImageContainer'
 
-export const Sidenav = ({ user, setImg, deleteImage, id, active }) => {
+export const Sidenav = ({
+  user,
+  id,
+  active,
+  setImg = (r) => r,
+  deleteImage = (r) => r,
+}) => {
   return (
     <div className="sidenav">
       <div className="profile">

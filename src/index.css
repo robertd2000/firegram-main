@@ -127,7 +127,7 @@ label:hover {
 
 /* image grid styles */
 .img-grid {
-  margin: 20px auto;
+  margin: 80px auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 40px;
@@ -276,8 +276,7 @@ hr {
 
 /* Main */
 .main {
-  margin-top: 2%;
-  margin-left: 29%;
+  margin: 2% auto;
   font-size: 28px;
   padding: 0 10px;
   width: 58%;
@@ -295,8 +294,9 @@ hr {
   border-radius: 18px;
   box-shadow: 1px 1px 8px 0 grey;
   height: auto;
-  margin-top: 40px;
-  margin-bottom: 20px;
+  /* margin-top: 40px;
+  margin-bottom: 20px; */
+  margin: 30px auto;
   padding: 20px 0 20px 50px;
   font-size: 20px;
 }
@@ -355,10 +355,10 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #effffa;
+  background: #909595;
   height: 100vh;
   text-align: left;
-  padding: 2rem;
+  /* padding: 2rem; */
   position: absolute;
   top: 0;
   left: 0;
@@ -366,6 +366,7 @@ hr {
   z-index: 10;
   margin: 0;
   height: 100vh;
+  color: #fcfcfc;
 }
 
 .styled-menu.open {
@@ -382,7 +383,7 @@ hr {
   padding: 2rem 0;
   font-weight: bold;
   letter-spacing: 0.5rem;
-  color: #0d0c1d;
+  color: #fcfcfc;
   text-decoration: none;
   transition: color 0.3s linear;
 }
@@ -471,8 +472,18 @@ hr {
     max-height: 90%;
   }
 
+  .styled-menu ul {
+    height: 80%;
+    top: 40px;
+  }
+
   .styled-menu li {
-    display: inline !important;
+    display: block !important;
+    text-align: center;
+  }
+
+  #navbar li a {
+    color: #e7e7e8 !important;
   }
 }
 @media (max-width: 638px) {
@@ -498,9 +509,10 @@ hr {
 }
 
 @media (orientation: landscape) {
-  #navbar ul {
+  #menu {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    float: right;
   }
 }
 
@@ -899,11 +911,24 @@ hr {
     display: block;
     top: 0;
   }
+
+  .url .active {
+    margin-left: 17%;
+  }
 }
 
 @media (max-width: 768px) {
+  #menu {
+    margin-top: 0;
+  }
+
   .logo {
     float: right;
+    margin: 10px;
+  }
+
+  .title h1 {
+    margin: 10px;
   }
 
   .sidenav {

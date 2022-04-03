@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Menu } from './Menu'
 
-const Burger = ({ open, setOpen }) => {
-  console.log(open)
+const Burger = ({ open, setOpen = (r) => r }) => {
   return (
     <button
       className="styled-burger"

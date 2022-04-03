@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Delete = ({ deleteImage }) => {
+const Delete = ({ deleteImage = (r) => r }) => {
   return (
     <svg
       onClick={deleteImage}

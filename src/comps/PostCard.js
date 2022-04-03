@@ -3,7 +3,11 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import s from './PostModal/PostCard.module.css'
 
-export const PostCard = ({ selectedImage, setSelectedImage, author }) => {
+export const PostCard = ({
+  selectedImage,
+  author,
+  setSelectedImage = (r) => r,
+}) => {
   const handleClick = (e) => {
     if (e.target.classList.contains('backdrop')) {
       setSelectedImage(null)

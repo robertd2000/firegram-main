@@ -17,8 +17,6 @@ import { Comments } from '../comps/PostModal/Comments'
 import { auth } from '../firebase/config'
 import { Loading } from '../comps/Loading'
 
-//Нужно полностью переработать
-// Принимать в виде пропсов id создателя поста
 export const Post = () => {
   const { id, uid } = useParams()
   const { data: currentUser } = useProfile(auth?.currentUser?.uid)

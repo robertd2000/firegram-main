@@ -10,12 +10,14 @@ import { Liked } from '../Liked'
 
 export const Modal = ({
   selectedImage,
-  setSelectedImage,
   author,
-  setLike,
-  addComment,
   currentUser,
   isAll,
+  setSelectedImage = (r) => r,
+  subscribe = (r) => r,
+  unsubscribe = (r) => r,
+  setLike = (r) => r,
+  addComment = (r) => r,
 }) => {
   const handleClick = (e) => {
     if (e.target.classList.contains('backdrop')) {
@@ -40,7 +42,12 @@ export const Modal = ({
         initial={{ y: '-100vh' }}
         animate={{ y: '10vh' }}
       >
-        <Username author={author} currentUser={currentUser} />
+        <Username
+          author={author}
+          currentUser={currentUser}
+          subscribe={subscribe}
+          unsubscribe={unsubscribe}
+        />
         <Image img={selectedImage.url} />
         <Status
           setLike={onLikePost}

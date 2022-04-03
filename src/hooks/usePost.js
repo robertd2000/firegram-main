@@ -101,15 +101,17 @@ export const usePost = (id, userId) => {
     querySnapshot1.forEach(async (d) => {
       const imgRef = doc(projectFirestore, 'images', d.id)
       try {
-        await updateDoc(imgRef, {
-          comments: [
-            ...d.data().comments,
-            {
-              comment: text,
-              author: data,
-            },
-          ],
-        })
+        if (d.data()) {
+          await updateDoc(imgRef, {
+            comments: [
+              ...d.data().comments,
+              {
+                comment: text,
+                author: data,
+              },
+            ],
+          })
+        }
       } catch (error) {
         console.log(error)
       }
@@ -123,17 +125,19 @@ export const usePost = (id, userId) => {
     const querySnapshot = await getDocs(q2)
     querySnapshot.forEach(async (d) => {
       const imgRef = doc(projectFirestore, 'images', author.uid, 'photo', d.id)
-
+      let comments = d.data().comments ? d.data().comments : []
       try {
-        await updateDoc(imgRef, {
-          comments: [
-            ...d.data().comments,
-            {
-              comment: text,
-              author: data,
-            },
-          ],
-        })
+        if (d.data()) {
+          await updateDoc(imgRef, {
+            comments: [
+              ...comments,
+              {
+                comment: text,
+                author: data,
+              },
+            ],
+          })
+        }
       } catch (error) {
         console.log(error)
       }

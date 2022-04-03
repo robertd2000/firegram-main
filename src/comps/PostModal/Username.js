@@ -6,9 +6,9 @@ import s from './PostCard.module.css'
 export const Username = ({
   author,
   style,
-  subscribe,
   currentUser,
-  unsubscribe,
+  subscribe = (r) => r,
+  unsubscribe = (r) => r,
 }) => {
   const onSubscribe = () => {
     subscribe(author)

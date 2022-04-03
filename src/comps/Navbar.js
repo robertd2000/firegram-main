@@ -39,7 +39,6 @@ export const Navbar = () => {
         ) : (
           <BurgerMenu user={user} name={name} image={image} signout={signout} />
         )}
-        {/*  */}
       </div>
     </nav>
   )

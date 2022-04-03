@@ -14,25 +14,19 @@ const useProfile = (id) => {
   let currentUser = auth?.currentUser
 
   useEffect(() => {
-    // if (auth.currentUser)
     if (id) {
-      const userRef = doc(
-        projectFirestore,
-        'users',
-        id
-        //  || auth?.currentUser?.uid
-      )
+      const userRef = doc(projectFirestore, 'users', id)
 
       const unsub = onSnapshot(userRef, (doc) => {
         setdata({
-          name: doc.data().name,
-          email: doc.data().email,
-          avatar: doc.data().avatar,
-          avatarPath: doc.data().avatarPath,
-          createdAt: doc.data().createdAt,
-          uid: doc.data().uid,
-          subscribes: doc.data().subscribes,
-          subscribers: doc.data().subscribers,
+          name: doc.data().name || '',
+          email: doc.data().email || '',
+          avatar: doc.data().avatar || '',
+          avatarPath: doc.data().avatarPath || '',
+          createdAt: doc.data().createdAt || '',
+          uid: doc.data().uid || '',
+          subscribes: doc.data().subscribes || '',
+          subscribers: doc.data().subscribers || '',
         })
       })
       return () => unsub()

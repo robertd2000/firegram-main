@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import s from './PostModal/Post.module.css'
 import { Username } from './PostModal/Username'
 
-export const Liked = ({ likedUsers, setSelectedPost }) => {
+export const Liked = ({ likedUsers, setSelectedPost = (r) => r }) => {
   const handleClick = (e) => {
     if (e.target.classList.contains('backdrop')) {
       setSelectedPost(null)

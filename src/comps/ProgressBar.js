@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useStorage from '../hooks/useStorage'
 import { motion } from 'framer-motion'
 
-export const ProgressBar = ({ file, setFile }) => {
+export const ProgressBar = ({ file, setFile = (r) => r }) => {
   const postId = Math.random() * 100
   const { url, progress } = useStorage(file, postId)
 

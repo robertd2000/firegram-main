@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import s from './PostCard.module.css'
 
-export const Comment = ({ addComment, postId, author }) => {
+export const Comment = ({ postId, author, addComment = (r) => r }) => {
   const [text, setText] = useState('')
 
   const onInput = (e) => {
